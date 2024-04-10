@@ -13,22 +13,18 @@ int main (int argc, char **argv)
         return (1);
     if (argc == 2)
         argv = ft_split(argv[1], ' ');
-    /*ft_init_stack(&a, argv + 1);
-    if(!ft_stack_sorted(a))
+    /*if(ft_errors(argv + 1))
+        return (1);*/
+    ft_init_stack(&a, argv + 1);
+    if(!ft_is_sorted(a))
     {
         if(ft_stack_len(a) == 2)
             ft_sa(&a);
         else if (stack_len(a) == 3)
             ft_sort_three(&a);
-        else
-            ft_sort_stacks(&a, &b);
+        //else
+            //ft_sort_stacks(&a, &b);
     }
-    ft_free_stack(&a);*/
-    printf("%i", argc);
-   while (argv[i] != NULL) {
-        printf("Argument %d: %s\n", i, argv[i]);
-        i++;
-    }
-    
+    ft_free_stack(&a);
     return(0);
 }

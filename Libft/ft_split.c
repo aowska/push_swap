@@ -11,91 +11,73 @@
 /* ************************************************************************** */
 #include "libft.h"
 
-# include <stdarg.h>
-# include <unistd.h>
-# include <limits.h>
-# include <stdbool.h>
-# include <stdio.h>
+int ft_ile(char const *s, char c) {
+    int a;
+    int j;
 
-int	ft_ile(char const *s, char c)
-{
-	int	i;
-	int	j;
-
-	i = 1;
-	j = 0;
-	if (!*s)
-		return (0);
-	while (s[i] != '\0')
-	{
-		if (s[i] == c && s[i - 1] != c)
-			j++;
-		i++;
-	}
-	if (s[i - 1] != c)
-		j++;
-	return (j);
+    a = 1;
+    j = 0;
+    if (!*s)
+        return (0);
+    while (s[a] != '\0') {
+        if (s[a] == c && s[a - 1] != c)
+            j++;
+        a++;
+    }
+    if (s[a - 1] != c)
+        j++;
+    return (j);
 }
 
-int	ft_ileword(char const *s, int a, int i, char c)
-{
-	while (s[i] == c || s[i] == '\0')
-	{
-		i++;
-		a++;
-	}
-	while (s[i] != c && s[i] != '\0')
-		i++;
-	return (i - a + 1);
+int ft_ileword(char const *s, char c, int *i) {
+    int count = 0;
+    while (s[*i] == c)
+        (*i)++;
+    while (s[*i] != c && s[*i] != '\0') {
+        count++;
+        (*i)++;
+    }
+    return count;
 }
 
-char	**ft_split(char const *s, char c)
-{
-	char	**array;
-	int		i;
-	int		b;
-	int		a;
-	int		d;
+char **ft_split(char const *s, char c) {
+    char **array;
+    int a;
+    int i;
+    int w;
 
-	i = 0;
-	b = 0;
-	a = 0;
-	d = 0;
-	array = (char **)malloc((ft_ile(s, c) + 1) * sizeof(char *));
-	if (!s || !array)
-		return (0);
-	while (a < ft_ile(s, c))
-	{
-		array[a] = (char *)malloc((ft_ileword(s, b, i, c)) * sizeof(char));
-		while (b < i)
-			array[a][d++] = s[b++];
-		array[a][i] = '\0';
-		a++;
-		i = b;
-		d = 0;
-	}
-	array[a] = NULL;
-	return (array);
+    a = 0;
+    i = 0;
+    w = ft_ile(s, c);
+    array = (char **)malloc((w + 1) * sizeof(char *));
+    if (!s || !array)
+        return (0);
+    while (a < w) {
+        int word_len = ft_ileword(s, c, &i);
+        array[a] = (char *)malloc((word_len + 1) * sizeof(char));
+        int j = 0;
+        while (word_len-- > 0)
+            array[a][j++] = s[i - word_len - 1];
+        array[a][j] = '\0';
+        a++;
+    }
+    array[a] = NULL;
+
+    return array;
 }
 
-int main()
+/*
+int main() 
 {
-    // Stała zdefiniowana w main
-    char const *input_string = "To jest przykładowy ciąg znaków do podziału na słowa";
+    char const *test_string = "Test string for splitting";
+    char **result = ft_split(test_string, ' ');
 
-    char **result_array = ft_split(input_string, ' ');
-
-    if (result_array == NULL) {
-        printf("Błąd alokacji pamięci lub brak danych wejściowych.\n");
-        return 1;
+    // Printing result
+    for (int i = 0; result[i] != NULL; i++) {
+        printf("%s\n", result[i]);
+        free(result[i]); // Free each individual string
     }
 
-    printf("Podzielony ciąg:\n");
-    for (int i = 0; result_array[i] != NULL; i++) {
-        printf("[%d]: \"%s\"\n", i, result_array[i]);
-        free(result_array[i]); // Zwolnij pamięć zaalokowaną dla poszczególnych napisów
-    }
-    free(result_array); // Zwolnij pamięć zaalokowaną dla tablicy wskaźników
-
+    free(result); // Free the array itself
     return 0;
-}
+} */
