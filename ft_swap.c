@@ -1,6 +1,6 @@
 #include "./push_swap.h"
 
-static void	swap(t_stack_node **head) //Define a function that swaps the positions of the top node and second node of a stack
+static void	ft_swap(t_stack_node **head) //Define a function that swaps the positions of the top node and second node of a stack
 {
 	if (!*head || !(*head)->next) //Check if the stop node, or second node of a stack exists
 		return ;
@@ -30,4 +30,9 @@ ft_ss(t_stack_node **a, t_stack_node **b)
     ft_swap(a);
     ft_swap(b);
     ft_print("ss\n");
+}
+
+int main ()
+{
+	char *a = {a[0] = 1, a[1]= 2, a[2]= }
 }

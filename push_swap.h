@@ -8,10 +8,12 @@
 # include "./Libft/libft.h"
 # include "./Libft/ft_printf.h"
 # include <stdio.h>
+#include <stdlib.h>
+
 
 typedef struct s_stack_node
 {  
-    int                     number;
+    long                    number;
     int                     id;
     int                     costs;
     bool                    above_median;
@@ -19,13 +21,17 @@ typedef struct s_stack_node
     struct s_stack_node     *target_node;  
     struct s_stack_node     *next;  
     struct s_stack_node     *prev;
-} t_stack_node;
+}                           t_stack_node;
 
 //Handle errors
 
 //Stack initiation
 
-//Nodes initiation 
+//Nodes initiation
+char    **ft_split(char const *s, char c);
+int ft_error_nbr(char *str);
+void ft_error_free();
+void ft_init_stack(t_stack_node **stack, char **argv);
 
 /*Stack utils
 ft_swap(t_stack_node **c);

@@ -32,7 +32,7 @@ long	ft_atol(const char *str)
 	n = 1;
 	nb = 0;
 	v = 0;
-	i = check_atoi(str, i);
+	i = check_atol(str, i);
 	while (str[i] == 45 || str[i] == 43)
 	{
 		if (str[i + 1] == 45 || str[i + 1] == 43)
