@@ -14,8 +14,39 @@ int ft_error_nbr(char *str)
     return (0);
 }
 
-void ft_error_free()
+void	ft_free_table(char **argv)
 {
-    /* tu musze jeszcze zwolnic pamiec ale to potem*/
-    exit(1);
+	int	i;
+
+	i = -1;
+	if (NULL == argv || NULL == *argv)
+		return ;
+	while (argv[i])
+		free(argv[i++]);
+	free(argv - 1);
+}
+
+void	ft_free_stack(t_stack_node **stack)
+{
+	t_stack_node	*tmp;
+	t_stack_node	*current;
+
+	if (NULL == stack)
+		return ;
+	current = *stack;
+	while (current)
+	{
+		tmp = current->next;
+		free(current);
+		current = tmp;
+	}
+	*stack = NULL;
+}
+
+void	error_free(t_stack_node **a, char **argv)
+{
+	ft_free_stack(a);
+	ft_free_table(argv);
+	write(2, "Error\n", 6);
+	exit(1);
 }

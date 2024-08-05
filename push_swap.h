@@ -14,6 +14,7 @@
 typedef struct s_stack_node
 {  
     long                    number;
+    int                     position;
     int                     id;
     int                     costs;
     bool                    above_median;
