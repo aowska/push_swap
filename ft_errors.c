@@ -43,7 +43,7 @@ void	ft_free_stack(t_stack_node **stack)
 	*stack = NULL;
 }
 
-void	error_free(t_stack_node **a, char **argv)
+void	ft_error_free(t_stack_node **a, char **argv)
 {
 	ft_free_stack(a);
 	ft_free_table(argv);
