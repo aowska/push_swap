@@ -21,6 +21,7 @@ char	*ft_strcat(char *dest, char const *src);
 int		ft_tolower(int a);
 size_t	ft_strlen(const char *str);
 int		ft_atoi(const char *str);
+long	ft_atol(const char *str);
 void	*ft_bzero(void *str, size_t n);
 void	*ft_memset(void *str, int c, size_t n);
 void	*ft_calloc(size_t number, size_t size);
@@ -52,7 +53,7 @@ void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 char	*ft_strstr(const char *haystack, const char *needle);
-long	ft_atol(const char *str);
+
 
 typedef struct s_list
 {

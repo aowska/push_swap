@@ -1,12 +1,12 @@
 # include "./push_swap.h"
 
-int stack_len(t_stack_node *stack)
+long ft_stack_len(t_stack_node *stack)
 {
-    int count;
+    long count;
 
     count = 0;
     if(!stack)
-        return ;
+        return (0);
     while( stack)
     {
         stack = stack->next;

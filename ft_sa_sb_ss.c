@@ -13,26 +13,21 @@ static void	ft_swap(t_stack_node **head) //Define a function that swaps the posi
 	(*head)->prev = NULL; //Sets the `prev` pointer of the `new head` to `NULL` completing the swap
 }
 
-ft_sa(t_stack_node **a)
+void ft_sa(t_stack_node **a)
 {
      ft_swap(a);
-     ft_print("sa\n");
+	 write(1, "sa\n\0", 4);
 }
 
-ft_sb(t_stack_node **b)
+void ft_sb(t_stack_node **b)
 {
     ft_swap(b);
-    ft_print("sb\n");
+	write(1, "sb\n\0", 4);
 }
 
-ft_ss(t_stack_node **a, t_stack_node **b)
+void ft_ss(t_stack_node **a, t_stack_node **b)
 {
     ft_swap(a);
     ft_swap(b);
-    ft_print("ss\n");
-}
-
-int main ()
-{
-	char *a = {a[0] = 1, a[1]= 2, a[2]= }
+	write(1, "ss\n\0", 4);
 }

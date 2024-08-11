@@ -3,50 +3,38 @@
 int ft_error_nbr(char *str)
 {
     if (!(*str == '-' || (*str >= '0' && *str <= '9')))
-        return (1);
+	{
+			write(1, "Not only numbers\n\0", 18);
+			return (1);
+	}
     if (*str == '-' && !(str[1] >= '0' && str[1] <= '9'))
-        return (1);
+	{
+			write(1, "Not only numbers\n\0", 18);
+			return (1);
+	}
     while (*(++str))
 	{
 		if (!(*str >= '0' && *str <= '9'))
+		{
+			write(1, "Not only numbers\n\0", 18);
 			return (1);
+		}
 	}
     return (0);
 }
 
-void	ft_free_table(char **argv)
+int ft_error_reapt(t_stack_node *node, long nbr)
 {
-	int	i;
-
-	i = -1;
-	if (NULL == argv || NULL == *argv)
-		return ;
-	while (argv[i])
-		free(argv[i++]);
-	free(argv - 1);
-}
-
-void	ft_free_stack(t_stack_node **stack)
-{
-	t_stack_node	*tmp;
-	t_stack_node	*current;
-
-	if (NULL == stack)
-		return ;
-	current = *stack;
-	while (current)
+	if (NULL == node)
+		return (0);
+	while (node)
 	{
-		tmp = current->next;
-		free(current);
-		current = tmp;
+		if (node->number == nbr)
+		{
+			write(1, "Repetition\n\0", 12);
+			return (1);
+		}
+		node = node->next;
 	}
-	*stack = NULL;
-}
-
-void	ft_error_free(t_stack_node **a, char **argv)
-{
-	ft_free_stack(a);
-	ft_free_table(argv);
-	write(2, "Error\n", 6);
-	exit(1);
+	return (0);
 }

@@ -54,13 +54,19 @@ char    **ft_split(char const *s, char c)
 		if (a == 0)
 		{
 			array[a] = (char *)malloc((1) * sizeof(char));
-			if(!array[a])
-				return (NULL);
+			if (!array[a])
+            {
+                ft_free_table(array); // Dodano zwolnienie pamięci w przypadku błędu
+                return (NULL);
+            }
 			array[a++][0] = '\0';
 		}
         array[a] = (char *)malloc((ft_ileword(s, &b, &i, c)) * sizeof(char));
-		if(!array[a])
-				return (NULL);
+		if (!array[a])
+        {
+            ft_free_table(array); // Dodano zwolnienie pamięci w przypadku błędu
+            return (NULL);
+        }
         while (b < i)
             array[a][d++] = s[b++];
         array[a][d] = '\0';

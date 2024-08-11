@@ -1,14 +1,14 @@
 #include "./push_swap.h"
 
-bool stack_sorted(t_stack_node *stack)
+int ft_not_stack_sorted(t_stack_node *stack)
 {
     if(!stack)
-        return (false);
+        return (1);
     while(stack->next)
     {
         if(stack->number > stack->next->number)
-            return (false);
+            return (1);
         stack = stack->next;
     }
-    return(true);
+    return(0);
 }
