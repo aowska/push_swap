@@ -12,7 +12,7 @@ int main(int argc, char **argv)
     i = 0;
     j = 0;
 
-    if(argc == 1 || (argc == 2 && !argv[1][0])) // Jeden argument lub dwa, ale drugi pusty
+    if (argc == 1 || (argc == 2 && !argv[1][0]))
         return (write(1, "wrong number of argument\n\0", 26), 1);
     if (argc == 2)
     {
@@ -21,38 +21,31 @@ int main(int argc, char **argv)
             return (1);
     }
     ft_init_stack(&a, argv + 1, argc);
-    /*ft_rra(&a); //testowanie czy dziala
-    // Dodanie printf dla wartości `number` w stosie `a`
-    t_stack_node *current = a;
-    while (current != NULL) {
-        printf("Wartość number: %ld\n", current->number);
-        current = current->next;
-    }*/
-    if(ft_not_stack_sorted(a))
+    if (ft_not_stack_sorted(a))
     {
         i = ft_stack_len(a);
-        if(i == 2)
+        if (i == 2)
             ft_sa(&a);
         else if (i == 3)
             ft_sort_three(&a);
         else
-            //ft_pb(&a,&b);
-            ft_sort_stacks(&a, &b);
+           ft_sort_stacks(&a, &b);
     }
-
     t_stack_node *current = a;
     t_stack_node *current2 = b;
     while (current != NULL) {
         printf("Wartość number: %ld\n", current->number);
+        printf("Wartość number Position: %ld\n", current->position);
+        printf("Wartość number median: %d\n", current->above_median);
         current = current->next;
     }
     while (current2 != NULL) {
         printf("Wartość number for B: %ld\n", current2->number);
+        printf("Wartość number Position: %ld\n", current2->position);
+        printf("Wartość number median: %d\n", current2->above_median);
         current2 = current2->next;
     }
     write(1,"--\n\0",4);
-    
-    // Wyświetlanie argumentów programu
     printf("Liczba argumentów: %i\n", argc);
     while (argv[j] != NULL) 
     {

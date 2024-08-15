@@ -5,8 +5,6 @@
 # include <unistd.h>
 # include <limits.h>
 # include <stdbool.h>
-# include "./Libft/libft.h"
-# include "./Libft/ft_printf.h"
 # include <stdio.h>
 #include <stdlib.h>
 
@@ -14,16 +12,16 @@
 typedef struct  s_stack_node
 {  
     long                    number;
-    /*int                     position;
-    int                     id;
-    int                     costs;
+    long                    position;
     bool                    above_median;
+    int                     costs;
     bool                    cheapest;
-    struct s_stack_node     *target_node;  */
+    struct s_stack_node     *target_node;
     struct s_stack_node     *next;  
     struct s_stack_node     *prev;
 }                           t_stack_node;
 
+/*Errors and Free*/
 char            **ft_split(char const *s, char c);
 int             ft_error_nbr(char *str);
 void            ft_free(t_stack_node **stack, char **argv, int argc);
@@ -32,9 +30,15 @@ void            ft_free_table(char **argv);
 void            ft_free_stack(t_stack_node **stack);
 void            ft_init_stack(t_stack_node **stack, char **argv, int argc);
 long            ft_atol(const char *str);
+
+/*Sorting*/
 int             ft_not_stack_sorted(t_stack_node *stack);
 long            ft_stack_len(t_stack_node *stack);
 void            ft_sort_three( t_stack_node **stack);
+void            ft_position_median(t_stack_node *a, long length);
+void            ft_init_a_nodes(t_stack_node *a, t_stack_node *b);
+static void     ft_target_node(t_stack_node *stack1, t_stack_node *stack2, char stack_a_b);
+void            ft_sort_stacks(t_stack_node **a, t_stack_node **b);
 
 /*Commands*/
 static void     ft_swap(t_stack_node **c);
