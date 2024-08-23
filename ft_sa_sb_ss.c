@@ -16,18 +16,18 @@ static void	ft_swap(t_stack_node **head)
 void	ft_sa(t_stack_node **a)
 {
     ft_swap(a);
-	write(1, "sa\n\0", 4);
+	write(1, "sa\n", 3);
 }
 
 void	ft_sb(t_stack_node **b)
 {
     ft_swap(b);
-	write(1, "sb\n\0", 4);
+	write(1, "sb\n", 3);
 }
 
 void	ft_ss(t_stack_node **a, t_stack_node **b)
 {
     ft_swap(a);
     ft_swap(b);
-	write(1, "ss\n\0", 4);
+	write(1, "ss\n", 3);
 }

@@ -44,4 +44,6 @@ void ft_init_stack(t_stack_node **stack, char **argv, int argc)
         ft_stack(n, stack);
         i++;
     }
+    if (argc == 2)
+		ft_free_table(argv);
 }

@@ -1,53 +1,61 @@
 #include "./push_swap.h"
 
-ft_max()
+void ft_min_on_top(t_stack_node **a)
 {
-
+    while ((*a)->number != ft_min(*a)->number) //As long as the smallest number is not at the top
+	{
+		if (ft_min(*a)->above_median) //Rotate or reverse rotate according to the position of the node on the median
+			ft_ra(a);
+		else
+			ft_rra(a);
+	}
 }
 
-ft_min()
+void ft_move_to_stack(t_stack_node **a, t_stack_node **b)
 {
+    t_stack_node *cheapest_node;
 
-}
-
-ft_cost()
-{
-
-}
-
-ft_cheapest()
-{
-}
-
-ft_min_on_top(a)
-{
-}
-
-ft_move_to_stack(a, b, 'b')
-{
-
-}
-
-void ft_position_median(t_stack_node *a, long length)
-{
-    long    i;
-    long median;
-
-    median = 0;
-    i = 1;
-    median = length / 2 ;
-    while(a)
-    {
-        a->position = i;
-        if(i <= median)
-            a->above_median = true;
-        else
-            a->above_median = false;
-        a = a->next;
-        i++;
+    cheapest_node = ft_current_cheapest(*a);
+    if (cheapest_node->above_median
+		&& cheapest_node->target_node->above_median)
+        {
+            while (*b != cheapest_node->target_node
+		                && *a != cheapest_node)
+		        ft_rr(a, b);
+	        ft_current_position(*a);
+	        ft_current_position(*b);
+        }
+	else if (!(cheapest_node->above_median)
+		&& !(cheapest_node->target_node->above_median))
+	{
+            while (*b != cheapest_node->target_node
+		            && *a != cheapest_node)
+		        ft_rrr(a, b);
+	        ft_current_position(*a);
+	        ft_current_position(*b);
     }
+    ft_check_top(a, cheapest_node, 'a');
+	ft_check_top(b, cheapest_node->target_node, 'b');
+    ft_pb(a, b);
 }
 
+void ft_move_cheapest_b_to_a(t_stack_node **a, t_stack_node **b)
+{
+    if (!b || !*b)
+        return; // Sprawdź, czy stos `b` nie jest pusty
+
+    t_stack_node *top_node; 
+    
+    top_node= (*b)->target_node;
+    while (*a != top_node)
+    {
+        if (top_node->above_median)
+            ft_ra(a);
+        else
+            ft_rra(a);
+    }
+    ft_pa(a, b);
+}
 
 void ft_init_nodes(t_stack_node *a, t_stack_node *b, char stack_a_b)
 {
@@ -63,7 +71,7 @@ void ft_init_nodes(t_stack_node *a, t_stack_node *b, char stack_a_b)
     ft_target_node(a, b, stack_a_b);
     if(stack_a_b == 'a')
     {
-        ft_cost(a,b, len_a, len_b);
+        ft_top_cost(a, len_a, len_b);
         ft_cheapest(a);
     }
 }
@@ -71,29 +79,26 @@ void ft_init_nodes(t_stack_node *a, t_stack_node *b, char stack_a_b)
 void	ft_sort_stacks(t_stack_node **a, t_stack_node **b)
 {
 	int	length;
+    int	length_2;
 
 	length = ft_stack_len(*a);
-	if (length > 4 && ft_not_stack_sorted(*a)) //If stack `a` has more than three nodes and aren't sorted
-    {
+    length_2 = ft_stack_len(*a);
+	if (length-- > 3 && ft_not_stack_sorted(*a))
 		ft_pb(a, b);
-        ft_pb(a, b);
-    }
-	else if (length > 3 && ft_not_stack_sorted(*a)) //If stack `a` still has more than three nodes and aren't sorted
+	if (length-- > 3 && ft_not_stack_sorted(*a))
 	    ft_pb(a, b);
-	//while (length > 3 && ft_not_stack_sorted(*a)) //If stack `a` still has more than three nodes and aren't sorted
-	//{
-		ft_init_nodes(*a, *b, 'a'); //Iniate all nodes from both stacks
-	//	ft_move_to_stack(a, b, 'a');
-    //    length--; //Move the cheapest `a` nodes into a sorted stack `b`, until three nodes are left in stack `a`
-	//}
-	//ft_sort_three(a);
-	/*while (*b) //Until the end of stack `b` is reached
+	while (length > 3 && ft_not_stack_sorted(*a))
 	{
-		ft_init_nodes(*a, *b, 'b'); //Initiate all nodes from both stacks
-		ft_move_to_stack(a, b, 'b'); //Move all `b` nodes back to a sorted stack `a`
+		ft_init_nodes(*a, *b, 'a');
+        ft_move_to_stack(a, b);
+        length--;
 	}
-	ft_position_median(*a); //Refresh the current position of stack `a`
-	ft_min_on_top(a); //Ensure smallest number is on top*/
+	ft_sort_three(a);
+    while (*b)
+	{
+		ft_init_nodes(*b, *a, 'b');
+		ft_move_cheapest_b_to_a(a,b);
+    }
+	ft_position_median(*a, length_2); 
+	ft_min_on_top(a);
 }
-
-

@@ -2,7 +2,7 @@
 
 long ft_stack_len(t_stack_node *stack)
 {
-    long count;
+    long    count;
 
     count = 0;
     if(!stack)

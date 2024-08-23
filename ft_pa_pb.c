@@ -21,13 +21,13 @@ void ft_push(t_stack_node **a, t_stack_node **b)
 void ft_pb(t_stack_node **a, t_stack_node **b)
 {
     ft_push(a, b);
-      write(1, "pb\n\0", 4);
+      write(1, "pb\n", 3);
 }
 
 void ft_pa(t_stack_node **a, t_stack_node **b)
 {
     ft_push(b, a);
-      write(1, "pa\n\0", 4);
+      write(1, "pa\n", 3);
 }
 
 /*
