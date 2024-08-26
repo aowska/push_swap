@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awacowsk <awacowsk@student.42.fr>          #+#  +:+       +#+        */
+/*   By: alicjawacowska <alicjawacowska@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024-08-26 11:19:02 by awacowsk          #+#    #+#             */
-/*   Updated: 2024-08-26 11:19:02 by awacowsk         ###   ########.fr       */
+/*   Created: 2024/08/26 11:19:02 by awacowsk          #+#    #+#             */
+/*   Updated: 2024/08/27 00:20:05 by alicjawacow      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	ft_free_stack(t_stack_node **stack)
 
 void	ft_free(t_stack_node **a, char **argv, int argc)
 {
+	write(2, "Error\n", 6);
 	ft_free_stack(a);
 	if (argc == 2)
 		ft_free_table(argv);

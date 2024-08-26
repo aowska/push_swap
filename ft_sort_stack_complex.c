@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_sort_stack_complex.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awacowsk <awacowsk@student.42.fr>          #+#  +:+       +#+        */
+/*   By: alicjawacowska <alicjawacowska@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024-08-26 11:37:25 by awacowsk          #+#    #+#             */
-/*   Updated: 2024-08-26 11:37:25 by awacowsk         ###   ########.fr       */
+/*   Created: 2024/08/26 11:37:25 by awacowsk          #+#    #+#             */
+/*   Updated: 2024/08/26 22:07:11 by alicjawacow      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

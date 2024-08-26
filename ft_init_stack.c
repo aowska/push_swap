@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init_stack.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awacowsk <awacowsk@student.42.fr>          #+#  +:+       +#+        */
+/*   By: alicjawacowska <alicjawacowska@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024-08-26 11:19:46 by awacowsk          #+#    #+#             */
-/*   Updated: 2024-08-26 11:19:46 by awacowsk         ###   ########.fr       */
+/*   Created: 2024/08/26 11:19:46 by awacowsk          #+#    #+#             */
+/*   Updated: 2024/08/26 23:56:26 by alicjawacow      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,12 @@ void	ft_init_stack(t_stack_node **stack, char **argv, int argc)
 	i = 0;
 	while (argv[i])
 	{
-		if (ft_error_nbr(argv[i]))
+		if (ft_error_nbr(argv[i]) == 1)
 			ft_free(stack, argv, argc);
 		n = ft_atol(argv[i]);
 		if (n > INT_MAX || n < INT_MIN)
-		{
-			write(1, "INT_MAX OR INT_MIN\n\0", 20);
 			ft_free(stack, argv, argc);
-		}
-		if (ft_error_reapt(*stack, n))
+		if (ft_error_reapt(*stack, n) == 1)
 			ft_free(stack, argv, argc);
 		ft_stack(n, stack);
 		i++;

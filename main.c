@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awacowsk <awacowsk@student.42.fr>          #+#  +:+       +#+        */
+/*   By: alicjawacowska <alicjawacowska@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024-08-26 11:45:51 by awacowsk          #+#    #+#             */
-/*   Updated: 2024-08-26 11:45:51 by awacowsk         ###   ########.fr       */
+/*   Created: 2024/08/26 11:45:51 by awacowsk          #+#    #+#             */
+/*   Updated: 2024/08/27 00:20:28 by alicjawacow      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static char	**ft_get_arguments(int argc, char **argv)
 {
 	if (argc == 1 || (argc == 2 && !argv[1][0]))
 	{
-		write(1, "wrong number of argument\n", 26);
+		write(2, "Error\n", 6);
 		return (NULL);
 	}
 	if (argc == 2)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_errors.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awacowsk <awacowsk@student.42.fr>          #+#  +:+       +#+        */
+/*   By: alicjawacowska <alicjawacowska@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024-08-26 11:18:51 by awacowsk          #+#    #+#             */
-/*   Updated: 2024-08-26 11:18:51 by awacowsk         ###   ########.fr       */
+/*   Created: 2024/08/26 11:18:51 by awacowsk          #+#    #+#             */
+/*   Updated: 2024/08/26 23:02:24 by alicjawacow      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,18 @@
 
 int	ft_error_nbr(char *str)
 {
-	if (!(*str == '-' || (*str >= '0' && *str <= '9')))
-	{
-		write(1, "Not only numbers\n\0", 18);
+	if (!(*str == '+'
+			|| *str == '-'
+			|| (*str >= '0' && *str <= '9')))
 		return (1);
-	}
-	if (*str == '-' && !(str[1] >= '0' && str[1] <= '9'))
-	{
-		write(1, "Not only numbers\n\0", 18);
+	if ((*str == '+'
+			|| *str == '-')
+		&& !(str[1] >= '0' && str[1] <= '9'))
 		return (1);
-	}
-	while (*(++str))
+	while (*++str)
 	{
 		if (!(*str >= '0' && *str <= '9'))
-		{
-			write(1, "Not only numbers\n\0", 18);
 			return (1);
-		}
 	}
 	return (0);
 }
@@ -43,7 +38,6 @@ int	ft_error_reapt(t_stack_node *node, long nbr)
 	{
 		if (node->number == nbr)
 		{
-			write(1, "Repetition\n\0", 12);
 			return (1);
 		}
 		node = node->next;

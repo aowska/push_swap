@@ -14,19 +14,22 @@
 
 static int	word_count(const char *s, char c)
 {
-	int	count;
+	int	i;
+	int	j;
 
-	count = 0;
-	while (*s)
+	i = 1;
+	j = 0;
+	if (!*s)
+		return (0);
+	while (s[i] != '\0')
 	{
-		while (*s == c)
-			s++;
-		if (*s)
-			count++;
-		while (*s && *s != c)
-			s++;
+		if (s[i] == c && s[i - 1] != c)
+			j++;
+		i++;
 	}
-	return (count);
+	if (s[i - 1] != c)
+		j++;
+	return (j);
 }
 
 static char	*malloc_word(const char *s, char c)
@@ -57,11 +60,10 @@ char	**ft_split(char const *s, char c)
 	int		i;
 
 	i = 0;
-	if (!s)
-		return (NULL);
-	array = (char **)malloc((word_count(s, c) + 1) * sizeof(char *));
-	if (!array)
-		return (NULL);
+	array = (char **)malloc((word_count(s, c) + 2) * sizeof(char *));
+	if (!s || !array)
+        return (0);
+	array[i++] = NULL;
 	while (*s)
 	{
 		while (*s == c)
@@ -80,7 +82,7 @@ char	**ft_split(char const *s, char c)
 	return (array);
 }
 
-int main (int argc, char **argv)
+/*int main (int argc, char **argv)
 {
     int i;
 	
@@ -96,4 +98,4 @@ int main (int argc, char **argv)
         i++;
     }
     return(0);
-}
+}*/

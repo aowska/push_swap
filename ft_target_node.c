@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_target_node.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awacowsk <awacowsk@student.42.fr>          #+#  +:+       +#+        */
+/*   By: alicjawacowska <alicjawacowska@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024-08-26 11:44:17 by awacowsk          #+#    #+#             */
-/*   Updated: 2024-08-26 11:44:17 by awacowsk         ###   ########.fr       */
+/*   Created: 2024/08/26 11:44:17 by awacowsk          #+#    #+#             */
+/*   Updated: 2024/08/26 23:20:40 by alicjawacow      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./push_swap.h"
 
-long	ft_get_best_match_index(char stack_a_b)
+/*long	ft_get_best_match_index(char stack_a_b)
 {
 	if (stack_a_b == 'a')
 		return (LONG_MIN);
@@ -81,9 +81,9 @@ void	ft_target_node(t_stack_node *stack1,
 			ft_set_target_node_b(stack1, target_node, best_match_index);
 		stack1 = stack1->next;
 	}
-}
+}*/
 
-/*static t_stack_node *ft_find_best_match(t_stack_node *stack1, t_stack_node *stack2, char stack_a_b, long *best_match_index)
+static t_stack_node *ft_find_best_match(t_stack_node *stack1, t_stack_node *stack2, char stack_a_b, long *best_match_index)
 {
 	t_stack_node *current_node;
 	t_stack_node *target_node;
@@ -135,4 +135,3 @@ void ft_target_node(t_stack_node *stack1, t_stack_node *stack2, char stack_a_b)
 		stack1 = stack1->next;
 	}
 }
-/*/
