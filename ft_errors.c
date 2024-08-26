@@ -1,18 +1,30 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_errors.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: awacowsk <awacowsk@student.42.fr>          #+#  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024-08-26 11:18:51 by awacowsk          #+#    #+#             */
+/*   Updated: 2024-08-26 11:18:51 by awacowsk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "./push_swap.h"
 
-int ft_error_nbr(char *str)
+int	ft_error_nbr(char *str)
 {
-    if (!(*str == '-' || (*str >= '0' && *str <= '9')))
+	if (!(*str == '-' || (*str >= '0' && *str <= '9')))
 	{
-			write(1, "Not only numbers\n\0", 18);
-			return (1);
+		write(1, "Not only numbers\n\0", 18);
+		return (1);
 	}
-    if (*str == '-' && !(str[1] >= '0' && str[1] <= '9'))
+	if (*str == '-' && !(str[1] >= '0' && str[1] <= '9'))
 	{
-			write(1, "Not only numbers\n\0", 18);
-			return (1);
+		write(1, "Not only numbers\n\0", 18);
+		return (1);
 	}
-    while (*(++str))
+	while (*(++str))
 	{
 		if (!(*str >= '0' && *str <= '9'))
 		{
@@ -20,10 +32,10 @@ int ft_error_nbr(char *str)
 			return (1);
 		}
 	}
-    return (0);
+	return (0);
 }
 
-int ft_error_reapt(t_stack_node *node, long nbr)
+int	ft_error_reapt(t_stack_node *node, long nbr)
 {
 	if (NULL == node)
 		return (0);

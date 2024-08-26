@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_atol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: awacowsk <awacowsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -23,9 +23,9 @@ int	check_atol(const char *str, int i)
 
 long	ft_atol(const char *str)
 {
-	int	i;
-	int	n;
-	int	nb;
+	int		i;
+	int		n;
+	int		nb;
 	long	v;
 
 	i = 0;

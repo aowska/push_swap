@@ -1,83 +1,86 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split_stack.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: awacowsk <awacowsk@student.42.fr>          #+#  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024-08-26 13:45:18 by awacowsk          #+#    #+#             */
+/*   Updated: 2024-08-26 13:45:18 by awacowsk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "./push_swap.h"
 
-
-int	ft_ile(char const *s, char c)
+static int	word_count(const char *s, char c)
 {
-	int	i;
-	int	j;
+	int	count;
 
-	i = 1;
-	j = 0;
-	if (!*s)
-		return (0);
-	while (s[i] != '\0')
+	count = 0;
+	while (*s)
 	{
-		if (s[i] == c && s[i - 1] != c)
-			j++;
+		while (*s == c)
+			s++;
+		if (*s)
+			count++;
+		while (*s && *s != c)
+			s++;
+	}
+	return (count);
+}
+
+static char	*malloc_word(const char *s, char c)
+{
+	int		len;
+	char	*word;
+	int		i;
+
+	len = 0;
+	while (s[len] && s[len] != c)
+		len++;
+	word = (char *)malloc((len + 1) * sizeof(char));
+	if (!word)
+		return (NULL);
+	i = 0;
+	while (i < len)
+	{
+		word[i] = s[i];
 		i++;
 	}
-	if (s[i - 1] != c)
-		j++;
-	return (j);
+	word[len] = '\0';
+	return (word);
 }
 
-int    ft_ileword(char const *s, int *a, int *i, char c)
+char	**ft_split(char const *s, char c)
 {
-    while (s[*i] == c || s[*i] == '\0')
-    {
-        (*i)++;
-        (*a)++;
-    }
-    while (s[*i] != c && s[*i] != '\0')
-        (*i)++;
-    return (*i - *a + 1);
-}
+	char	**array;
+	int		i;
 
-char    **ft_split(char const *s, char c)
-{
-    char    **array;
-    int        i;
-    int        b;
-    int        a;
-    int        d;
-
-    i = 0;
-    b = 0;
-    a = 0;
-    d = 0;
-	array = NULL;
-    array = (char **)malloc((ft_ile(s, c) + 2) * sizeof(char *));
-    if (!s || !array)
-        return (0);
-    while (s[b] != '\0')
-    {
-		if (a == 0)
+	i = 0;
+	if (!s)
+		return (NULL);
+	array = (char **)malloc((word_count(s, c) + 1) * sizeof(char *));
+	if (!array)
+		return (NULL);
+	while (*s)
+	{
+		while (*s == c)
+			s++;
+		if (*s)
 		{
-			array[a] = (char *)malloc((1) * sizeof(char));
-			if (!array[a])
-            {
-                ft_free_table(array); // Dodano zwolnienie pamięci w przypadku błędu
-                return (NULL);
-            }
-			array[a++][0] = '\0';
+			array[i] = malloc_word(s, c);
+			if (!array[i])
+				return (ft_free_table(array), NULL);
+			i++;
+			while (*s && *s != c)
+				s++;
 		}
-        array[a] = (char *)malloc((ft_ileword(s, &b, &i, c)) * sizeof(char));
-		if (!array[a])
-        {
-            ft_free_table(array); // Dodano zwolnienie pamięci w przypadku błędu
-            return (NULL);
-        }
-        while (b < i)
-            array[a][d++] = s[b++];
-        array[a][d] = '\0';
-        a++;
-        d = 0;
-    }
-    array[a] = NULL;
-    return (array);
+	}
+	array[i] = NULL;
+	return (array);
 }
 
-/*int main (int argc, char **argv)
+int main (int argc, char **argv)
 {
     int i;
 	
@@ -93,4 +96,4 @@ char    **ft_split(char const *s, char c)
         i++;
     }
     return(0);
-}*/
+}
