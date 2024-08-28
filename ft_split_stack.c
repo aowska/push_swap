@@ -12,7 +12,7 @@
 
 #include "./push_swap.h"
 
-static int	word_count(const char *s, char c)
+int	ft_ile(char const *s, char c)
 {
 	int	i;
 	int	j;
@@ -32,25 +32,30 @@ static int	word_count(const char *s, char c)
 	return (j);
 }
 
-static char	*malloc_word(const char *s, char c)
+int	ft_ileword(char const *s, int *a, int *i, char c)
 {
-	int		len;
-	char	*word;
-	int		i;
+	while (s[*i] == c || s[*i] == '\0')
+	{
+		(*i)++;
+		(*a)++;
+	}
+	while (s[*i] != c && s[*i] != '\0')
+		(*i)++;
+	return (*i - *a + 1);
+}
 
-	len = 0;
-	while (s[len] && s[len] != c)
-		len++;
-	word = (char *)malloc((len + 1) * sizeof(char));
+static char	*allocate_word(const char *s, int *a, int *b, int i)
+{
+	char		*word;
+	int			d;
+
+	d = 0;
+	word = (char *)malloc((i) * sizeof(char));
 	if (!word)
 		return (NULL);
-	i = 0;
-	while (i < len)
-	{
-		word[i] = s[i];
-		i++;
-	}
-	word[len] = '\0';
+	while (*b < *a)
+		word[d++] = s[(*b)++];
+	word[d] = '\0';
 	return (word);
 }
 
@@ -58,44 +63,45 @@ char	**ft_split(char const *s, char c)
 {
 	char	**array;
 	int		i;
+	int		b;
+	int		a;
 
 	i = 0;
-	array = (char **)malloc((word_count(s, c) + 2) * sizeof(char *));
+	b = 0;
+	a = 0;
+	array = NULL;
+	array = (char **)malloc((ft_ile(s, c) + 2) * sizeof(char *));
 	if (!s || !array)
-        return (0);
-	array[i++] = NULL;
-	while (*s)
+		return (0);
+	array[a] = (char *)malloc((1) * sizeof(char));
+	if (!array[a])
+		return (ft_free_table(array), NULL);
+	a++;
+	while (s[b] != '\0')
 	{
-		while (*s == c)
-			s++;
-		if (*s)
-		{
-			array[i] = malloc_word(s, c);
-			if (!array[i])
-				return (ft_free_table(array), NULL);
-			i++;
-			while (*s && *s != c)
-				s++;
-		}
+		array[a] = allocate_word(s, &i, &b, ft_ileword(s, &b, &i, c));
+		if (!array[a])
+			return (ft_free_table(array), NULL);
+		a++;
 	}
-	array[i] = NULL;
+	array[a] = NULL;
 	return (array);
 }
 
 /*int main (int argc, char **argv)
 {
-    int i;
-	
+	int i;
+
 	i = 0;
-    if(argc == 1 || (argc == 2 && !argv[1][0])) //one value or 2 but empty 
-        return (1);
-    if (argc == 2)
-    	argv = ft_split(argv[1], ' ');
+	if(argc == 1 || (argc == 2 && !argv[1][0])) //one value or 2 but empty
+		return (1);
+	if (argc == 2)
+		argv = ft_split(argv[1], ' ');
 	printf("%i", argc);
-    while (argv[i] != NULL) 
+	while (argv[i] != NULL)
 	{
-        printf("Argument %d: %s\n", i, argv[i]);
-        i++;
-    }
-    return(0);
+		printf("Argument %d: %s\n", i, argv[i]);
+		i++;
+	}
+	return(0);
 }*/
